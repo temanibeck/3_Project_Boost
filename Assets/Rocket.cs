@@ -25,6 +25,20 @@ public class Rocket : MonoBehaviour
         Rotate();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        switch(collision.gameObject.tag)
+        {
+            case "Friendly":
+                //do nothing
+                break;
+            default:
+                print("Dead");
+                //kill player and reload level
+                break;
+        }
+    }
+
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))//can thrust while rotating
@@ -62,4 +76,6 @@ public class Rocket : MonoBehaviour
 
         rigidBody.freezeRotation = false; //ressume physics rotation control
     }
+
+
 }
